@@ -116,7 +116,17 @@ namespace BankingRemoteMaui
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-            await _bankingService.UpdateClient(CurrentClient);
+            try
+            {
+                await _bankingService.UpdateClient(CurrentClient);
+
+                await DisplayAlert("Success","Client Saved", "Ok");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Cancel");
+            }
+
         }
     }
 
